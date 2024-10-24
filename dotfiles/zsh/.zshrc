@@ -114,9 +114,6 @@ tailcolor() {
     tail -f "$1" | ccze
 }
 
-export NIX_PATH="nixos-config=$HOME/.config/nixos/configuration.nix:$NIX_PATH"
-
-
 export TERM="xterm-kitty"
 
 # User configuration
