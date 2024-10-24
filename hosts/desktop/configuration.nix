@@ -92,13 +92,17 @@
     home.packages = with pkgs; [
       zsh kitty neovim
     ];
+ 
+    home.file.".zshrc".source = ../../dotfiles/zsh/.zshrc;
+    home.file.".config/nvim".source = ../../dotfiles/nvim;
+
 
     
-    home.file.".config/zsh/.zshrc".source = ./dotfiles/zsh/.zshrc;
-    home.file.".config/nvim" = {
-      source = ./dotfiles/nvim;
-      recursive = true;
-    };
+    #home.file.".config/zsh/.zshrc".source = ./dotfiles/zsh/.zshrc;
+    #home.file.".config/nvim" = {
+      #source = ./dotfiles/nvim;
+      #recursive = true;
+    #};
 
   };
 
