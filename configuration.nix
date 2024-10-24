@@ -8,7 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import "${builtins.fetchTarball https://github.com/nix-community/home-manager/archive/refs/heads/release-24.05.zip}/nixos")
     ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -47,8 +50,6 @@
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-
-
 
   fonts.packages = with pkgs; [
    (nerdfonts.override { fonts = [ "3270" "DroidSansMono" ]; })
@@ -117,23 +118,25 @@
     packages = with pkgs; [
       curl
       xarchiver
-      vscode
+      aria
+      pavucontrol
+      vlc
       zsh
+      wget
       vim
       git
       eza
       ranger
       rofi
-      nerdfonts
+      lazygit
       btop
       neovim
       brave
       cinnamon.nemo
-      alacritty
+      kitty
       feh
       killall
       stdenv
-      ueberzugpp
       dunst
       copyq
       xclip
@@ -141,6 +144,7 @@
       fnm
       maim
       discord
+      wget
     ];
   };
 
@@ -158,9 +162,12 @@
     docker-compose  
   ];
 
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
+   home-manager.users.shiva = {
+    home.stateVersion = "24.05";  # Adapt this to match your Home Manager version
+    # Define Home Manager configuration here
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
