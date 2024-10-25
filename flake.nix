@@ -14,9 +14,18 @@
       desktop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/desktop/configuration.nix  # Path to your configuration.nix file
-          home-manager.nixosModules.home-manager
+          ./hosts/desktop/configuration.nix  
         ];
+      };
+    };
+
+    homeConfigurations = {
+      shiva = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        system = "x86_64-linux";
+        homeDirectory = "/home/shiva";
+        username = "shiva";
+        configuration = ./hosts/desktop/home.nix;  
       };
     };
   };
